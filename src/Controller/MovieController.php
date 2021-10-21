@@ -23,16 +23,23 @@ class MovieController extends AbstractController
 
 
     /**
-     * @Route("/product", name="create_product")
+     * @Route("/createMovie/{name}/{year}", name="create_movie")
      */
-    public function createMovie(): Response
+    public function createMovie(string $name, int $year): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
+
         $movie = new Movie();
 
-        $movie->setName('Terminator');
+        $movie->setName($name);
 
-        $movie->setReleaseYear('1984');
+        $movie->setReleaseYear($year);
 
+        $entityManager->persist($movie);
+
+        $entityManager->flush();
+
+        return new Response((string) $movie . ' - ' . $year, 400);
 
         // $errors = $validator->validate($movie);
         // if (count($errors) > 0) {
