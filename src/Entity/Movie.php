@@ -30,7 +30,7 @@ class Movie
     private $releaseYear;
 
     /**
-     * @ORM\OneToMany(targetEntity=Quote::class, mappedBy="movie", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Quote::class, mappedBy="Movie", orphanRemoval=true)
      */
     private $quotes;
 

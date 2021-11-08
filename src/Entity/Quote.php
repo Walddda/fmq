@@ -28,10 +28,10 @@ class Quote
     private $character;
 
     /**
-     * @ORM\ManyToOne(targetEntity=movie::class, inversedBy="quotes")
+     * @ORM\ManyToOne(targetEntity=Movie::class, inversedBy="quotes")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $movie;
+    private $Movie;
 
     public function getId(): ?int
     {
@@ -64,12 +64,12 @@ class Quote
 
     public function getMovie(): ?string
     {
-        return $this->movie;
+        return $this->Movie;
     }
 
     public function setMovie(?string $movie): self
     {
-        $this->movie = $movie;
+        $this->Movie = $movie;
 
         return $this;
     }

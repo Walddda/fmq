@@ -21,6 +21,27 @@ class MovieController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/movies", name="movie_show")
+     */
+    public function show(): Response
+    {
+        ini_set('memory_limit', '-1');
+        $movie = $this->getDoctrine()
+            ->getRepository(Movie::class)
+            ->findAll();
+        print_r($movie);
+        exit();
+        // return new Response('Check out this great product: ' . $movie[0] . getName());
+
+        return $this->json([
+            'movie' => 'Welcome to the Movie controller!',
+        ]);
+
+        // or render a template
+        // in the template, print things with {{ product.name }}
+        // return $this->render('product/show.html.twig', ['product' => $product]);
+    }
 
     /**
      * @Route("/createMovie/{name}/{year}", name="create_movie")
